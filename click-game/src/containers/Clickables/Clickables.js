@@ -21,6 +21,19 @@ class Clickables extends Component {
     hasBeenClicked: false
   };
 
+  randomImg = masterList => {
+    const masterImages = [];
+    for (var i = 0; i < 12; i++) {
+      let figure = masterList[Math.floor(Math.random() * masterList.length)];
+      const index = masterList.indexOf(figure);
+      masterList.splice(index, 1);
+      masterImages.push(figure);
+      if (i === 11) {
+        return masterImages;
+      }
+    }
+  };
+
   masterList = [
     Tammy,
     Beth,
@@ -36,22 +49,10 @@ class Clickables extends Component {
     Goldenfold
   ];
 
-  imgClicked = () => {
-    let clickState = this.state.hasBeenClicked;
-    clickState = true;
-    console.log(clickState);
-  };
-
   character = () =>
-    this.masterList.map(headshot => {
-      return (
-        <Character
-          image={headshot}
-          key={this.masterList.indexOf(headshot)}
-          clicked={this.imgClicked}
-        />
-      );
-    });
+    this.randomImg(this.masterList).map(headshot => (
+      <Character image={headshot} clicked={() => this.character()} />
+    ));
 
   render() {
     return <div className="Clickables">{this.character()}</div>;
