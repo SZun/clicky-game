@@ -15,5 +15,6 @@
   },
   "prettier": {
     "singleQuote": true
-  }
+  },
+  "devDependencies": {}
 }
