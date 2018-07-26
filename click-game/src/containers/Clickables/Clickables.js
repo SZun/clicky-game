@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 
 import './Clickables.css';
 import Character from '../../components/Character/Character';
+import NavBar from '../Navbar/Navbar';
+import Jumbotron from '../../components/Jumbotron/Jumbotron';
+import Footer from '../../components/Footer/Footer';
 
 import Tammy from '../../assets/media/tammy.png';
 import Beth from '../../assets/media/beth.jpg';
@@ -17,22 +20,27 @@ import Squanchy from '../../assets/media/squanchy.png';
 import Goldenfold from '../../assets/media/goldenfold.jpg';
 
 class Clickables extends Component {
+  masterList = [
+    Tammy,
+    Beth,
+    BirdPerson,
+    Rick,
+    Jerry,
+    MrPB,
+    MeeSeeks,
+    MailMan,
+    KrombopulusMicheal,
+    Summer,
+    Squanchy,
+    Goldenfold
+  ];
+
   state = {
     hasBeenClicked: false,
-    characters: [
-      Tammy,
-      Beth,
-      BirdPerson,
-      Rick,
-      Jerry,
-      MrPB,
-      MeeSeeks,
-      MailMan,
-      KrombopulusMicheal,
-      Summer,
-      Squanchy,
-      Goldenfold
-    ]
+    characters: this.masterList,
+    score: 0,
+    topScore: 0,
+    correctGuess: true
   };
 
   randomImg = masterList => {
@@ -49,21 +57,6 @@ class Clickables extends Component {
     }
   };
 
-  masterList = [
-    Tammy,
-    Beth,
-    BirdPerson,
-    Rick,
-    Jerry,
-    MrPB,
-    MeeSeeks,
-    MailMan,
-    KrombopulusMicheal,
-    Summer,
-    Squanchy,
-    Goldenfold
-  ];
-
   character = () => {
     this.setState({
       characters: this.randomImg(this.masterList),
@@ -73,14 +66,27 @@ class Clickables extends Component {
 
   render() {
     return (
-      <div className="Clickables">
-        {this.state.characters.map(headshot => (
-          <Character
-            image={headshot}
-            clicked={() => this.character()}
-            key={this.state.characters.indexOf(headshot)}
-          />
-        ))}
+      <div>
+        <NavBar
+          status={
+            this.state.correctGuess
+              ? `You guessed Correctly!`
+              : `Sorry You Lost :(`
+          }
+          score={this.state.score}
+          topScore={this.state.topScore}
+        />
+        <Jumbotron />
+        <div className="Clickables">
+          {this.state.characters.map(headshot => (
+            <Character
+              image={headshot}
+              clicked={() => this.character()}
+              key={this.state.characters.indexOf(headshot)}
+            />
+          ))}
+        </div>
+        <Footer />
       </div>
     );
   }
