@@ -40,7 +40,8 @@ class Clickables extends Component {
     characters: this.masterList,
     score: 0,
     topScore: 0,
-    correctGuess: true
+    guess: 'Take a guess!',
+    clicked: []
   };
 
   randomImg = masterList => {
@@ -57,7 +58,23 @@ class Clickables extends Component {
     }
   };
 
-  character = () => {
+  character = id => {
+    if (!this.state.clicked.includes(id)) {
+      this.setState({
+        score: this.state.score + 1,
+        guess: 'You guessed correctly!!!',
+        clicked: this.state.clicked.concat(id)
+      });
+    } else {
+      this.setState({
+        guess: 'You guessed incorrectly! :(',
+        score: 0,
+        clicked: []
+      });
+      if (this.state.topScore < this.state.score) {
+        this.setState({ topScore: this.state.score });
+      }
+    }
     this.setState({
       characters: this.randomImg(this.masterList),
       hasBeenClicked: true
@@ -68,11 +85,7 @@ class Clickables extends Component {
     return (
       <div>
         <NavBar
-          status={
-            this.state.correctGuess
-              ? `You guessed Correctly!`
-              : `Sorry You Lost :(`
-          }
+          status={this.state.guess}
           score={this.state.score}
           topScore={this.state.topScore}
         />
@@ -81,7 +94,7 @@ class Clickables extends Component {
           {this.state.characters.map(headshot => (
             <Character
               image={headshot}
-              clicked={() => this.character()}
+              clicked={() => this.character(headshot)}
               key={this.state.characters.indexOf(headshot)}
             />
           ))}
