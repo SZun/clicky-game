@@ -64,14 +64,22 @@ class Clickables extends Component {
     Goldenfold
   ];
 
-  character = () =>
-    this.setState({ characters: this.randomImg(this.masterList) });
+  character = () => {
+    this.setState({
+      characters: this.randomImg(this.masterList),
+      hasBeenClicked: true
+    });
+  };
 
   render() {
     return (
       <div className="Clickables">
         {this.state.characters.map(headshot => (
-          <Character image={headshot} clicked={() => this.character()} />
+          <Character
+            image={headshot}
+            clicked={() => this.character()}
+            key={this.state.characters.indexOf(headshot)}
+          />
         ))}
       </div>
     );

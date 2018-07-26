@@ -1,14 +1,16 @@
-import React, { Component } from "react";
-import "./Layout.css";
+import React, { Component } from 'react';
+import './Layout.css';
 
-import NavBar from "../Navbar/Navbar";
-import Jumbotron from "../../components/Jumbotron/Jumbotron";
-import Clickables from "../Clickables/Clickables";
-import Footer from "../../components/Footer/Footer";
+import NavBar from '../Navbar/Navbar';
+import Jumbotron from '../../components/Jumbotron/Jumbotron';
+import Clickables from '../Clickables/Clickables';
+import Footer from '../../components/Footer/Footer';
 
 class Layout extends Component {
   state = {
-    correctGuess: true
+    correctGuess: true,
+    score: 0,
+    topScore: 0
   };
 
   render() {
@@ -20,6 +22,8 @@ class Layout extends Component {
               ? `You guessed Correctly!`
               : `Sorry You Lost :(`
           }
+          score={this.state.score}
+          topScore={this.state.topScore}
         />
         <Jumbotron />
         <Clickables />
