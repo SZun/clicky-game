@@ -7,3 +7,9 @@
     margin: 0;
     padding: 0;
 }
+
+@media only screen and (max-width: 425px) {
+    .NavItem {
+        width: 100%;
+    }
+}

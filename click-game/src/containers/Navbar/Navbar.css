@@ -8,3 +8,14 @@
     width: 100%;
     box-sizing: border-box;
 }
+
+.NavBar li:last-child{
+    offset-position: auto;
+    font-size: 2rem;
+}
+
+@media only screen and (max-width: 425px) {
+    .NavBar {
+        display: block;
+    }
+}

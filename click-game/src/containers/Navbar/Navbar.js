@@ -1,6 +1,6 @@
-import React from "react";
-import NavItem from "../../components/NavItem/NavItem";
-import "./Navbar.css";
+import React from 'react';
+import NavItem from '../../components/NavItem/NavItem';
+import './Navbar.css';
 
 const Navbar = props => {
   return (
