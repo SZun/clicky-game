@@ -1,0 +1,13 @@
+.Character {
+    /* outline-style: solid; */
+    /* transform: scale(.5); */
+    border: .4em solid #f5f5dc;
+    margin: 0;
+    padding: 0;
+    width: 20%;
+    margin: 1%;
+}
+
+.Character:hover {
+    transform: scale(1.1)
+}
